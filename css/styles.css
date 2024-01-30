@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;500;600;700&display=swap");
+:root {
+  --blue: #53b9d3;
+  --red: #a40e4c;
+  --orange: #ffa62b;
+  --dark: #2c2c54;
+  --border-r: 20px;
+}
+* {
+  font-family: "Sofia Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  background-color: #fffffc;
+}
+h1 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+h3 {
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  text-transform: uppercase;
+}
+.btn {
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: var(--border-r);
+  text-align: center;
+  color: white;
+  padding: 0.5rem clamp(0.5rem, 2vw, 2rem);
+  cursor: pointer;
+  word-break: keep-all;
+}
+.btn i {
+  margin-right: 2px;
+}
+
+.btn:hover {
+  background-color: white;
+  color: black;
+}
+.header input[type="file"] {
+  display: none;
+}
+
+.header {
+  width: 100vw;
+  background-color: var(--dark);
+  padding: 1rem clamp(0rem, calc(0.1rem + 2vw), 10rem);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.header .logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.header .logo strong {
+  color: var(--orange);
+}
+.header .logo img {
+  width: clamp(1rem, calc(1rem + 5vw), 4rem);
+}
+.header .buttons {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0rem, 1vw, 1rem);
+}
+.header .h-btn1 {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+.header .h-btn2 {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+/* main */
+.main {
+  display: flex;
+  flex-direction: column;
+  margin: 5rem 0;
+  padding: 0 clamp(0rem, calc(0.1rem + 2vw), 10rem);
+  gap: 1rem 0;
+  justify-content: center;
+  min-height: 50vh;
+}
+.main h3 {
+  text-align: left;
+  color: var(--blue);
+}
+.main .recent-container {
+  border-radius: var(--border-r);
+  overflow: hidden;
+  width: 100%;
+}
+
+.main .recent-container .recent-header.item {
+  background-color: var(--dark);
+}
+.main .recent-container .item {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: var(--blue);
+  max-height: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+.main .item .icon {
+  width: 3%;
+}
+.main .item .icon img {
+  width: 2rem;
+}
+.main .item h3 {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  color: white;
+}
+/* footer */
+.footer {
+  padding: 1rem clamp(0rem, calc(0.1rem + 2vw), 10rem);
+  display: flex;
+  justify-content: space-between;
+}
+/* shapes */
+
+.shape-divider-top {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  opacity: 0.3;
+}
+
+.shape-divider-top svg {
+  position: relative;
+  display: block;
+  min-width: 50rem;
+  width: calc(100% + 1.3px);
+  height: 20vh;
+}
+
+.shape-divider-top .shape-fill {
+  fill: var(--orange);
+}
+
+.shape-divider-bottom {
+  position: absolute;
+  top: 80vh;
+  transform: rotate(180deg);
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  opacity: 0.3;
+}
+
+.shape-divider-bottom svg {
+  position: relative;
+  display: block;
+  min-width: 50rem;
+  width: calc(100% + 1.3px);
+  height: 20vh;
+}
+
+.shape-divider-bottom .shape-fill {
+  fill: var(--orange);
+}
