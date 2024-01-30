@@ -36,7 +36,7 @@ function getRecentFromStorage() {
       })}</h3>`;
       item.addEventListener("click", (e) => {
         window.localStorage.setItem("open-file", JSON.stringify(el));
-        window.location.href = "../pages/app.html";
+        window.location.href = "./marked-word/pages/app.html";
       });
       recentContainer.appendChild(item);
     });
@@ -89,7 +89,7 @@ newfilebtn.addEventListener("click", (e) => {
       content: "Put your content here",
     })
   );
-  window.location.href = "../pages/app.html";
+  window.location.href = "./marked-word/pages/app.html";
 });
 upload.addEventListener("change", (e) => {
   const fileName = e.target.files[0].name;

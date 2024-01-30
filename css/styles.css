@@ -48,6 +48,9 @@ h3 {
   background-color: white;
   box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
 }
+a {
+  color: var(--blue);
+}
 .btn:active {
   transform: scale(90%);
 }
