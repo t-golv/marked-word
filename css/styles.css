@@ -35,7 +35,7 @@ h3 {
   word-break: keep-all;
 }
 .btn i {
-  margin-right: 2px;
+  margin-right: 0.5rem;
 }
 
 .btn:hover {
@@ -59,13 +59,13 @@ h3 {
 .header .logo {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.5rem, calc(0.8rem + 1vw), 4rem);
 }
 .header .logo strong {
   color: var(--orange);
 }
 .header .logo img {
-  width: clamp(1rem, calc(1rem + 5vw), 4rem);
+  width: clamp(0.5rem, calc(1rem + 2vw), 4rem);
 }
 .header .buttons {
   display: flex;
@@ -92,7 +92,7 @@ h3 {
 }
 .main h3 {
   text-align: left;
-  color: var(--blue);
+  color: var(--dark);
 }
 .main .recent-container {
   border-radius: var(--border-r);
@@ -100,10 +100,12 @@ h3 {
   width: 100%;
 }
 
-.main .recent-container .recent-header.item {
-  background-color: var(--dark);
+.main .recent-container .item:hover {
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
-.main .recent-container .item {
+.main .recent-container .item,
+.main .recent-container .recent-header {
   width: 100%;
   padding: 1rem 2rem;
   background-color: var(--blue);
@@ -113,11 +115,17 @@ h3 {
   align-items: center;
   overflow: hidden;
 }
-.main .item img {
+.main .item img,
+.main .recent-header img {
   width: 2rem;
   margin-right: clamp(0.5rem, 3vw, 5rem);
 }
-.main .item h3 {
+
+.main .recent-container .recent-header {
+  background-color: var(--dark) !important;
+}
+.main .item h3,
+.main .recent-header h3 {
   display: flex;
   overflow: hidden;
   align-items: center;
