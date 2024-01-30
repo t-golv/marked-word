@@ -1,6 +1,7 @@
 const upload = document.getElementById("file-upload");
 let footer = document.querySelector(".footer");
 let recentContainer = document.querySelector(".recent-container");
+let newfilebtn = document.querySelector(".newFile");
 
 function refreshDate() {
   let el = document.getElementById("date-foot");
@@ -80,32 +81,28 @@ function saveToLocal(fileName, time, content = "") {
   }
   // window.location.reload();
 }
-function loadOpened() {
-  let fileToOpen = window.localStorage.getItem("open-file");
-  if (fileToOpen) {
-    let headerText = document.querySelector(".main-text");
-    fileToOpen = JSON.parse(fileToOpen);
-    document.title = fileToOpen.filename.slice(0, -4).toUpperCase();
-    headerText.innerText = fileToOpen.filename.slice(0, -4).toUpperCase();
+newfilebtn.addEventListener("click", (e) => {
+  window.localStorage.setItem(
+    "open-file",
+    JSON.stringify({
+      filename: "untitled.txt",
+      content: "Put your content here",
+    })
+  );
+  window.location.href = "../pages/app.html";
+});
+upload.addEventListener("change", (e) => {
+  const fileName = e.target.files[0].name;
+  if (e.target.files[0].size < 10000) {
+    let fr = new FileReader();
+    fr.onload = function () {
+      saveToLocal(fileName, e.target.files[0].lastModified, fr.result);
+      getRecentFromStorage();
+    };
+    console.log(fr.readAsText(e.target.files[0]));
+  } else {
+    alert("File has to be less than 10kb");
   }
-}
-
-if (document.title == "Marked Word") {
-  upload.addEventListener("change", (e) => {
-    const fileName = e.target.files[0].name;
-    if (e.target.files[0].size < 10000) {
-      let fr = new FileReader();
-      fr.onload = function () {
-        saveToLocal(fileName, e.target.files[0].lastModified, fr.result);
-        getRecentFromStorage();
-      };
-      console.log(fr.readAsText(e.target.files[0]));
-    } else {
-      alert("File has to be less than 10kb");
-    }
-  });
-  getRecentFromStorage();
-  refreshDate();
-} else {
-  loadOpened();
-}
+});
+getRecentFromStorage();
+refreshDate();

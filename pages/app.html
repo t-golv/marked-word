@@ -23,9 +23,15 @@
         <h1 class="main-text">Untitled</h1>
       </div>
       <div class="buttons">
-        <button class="btn h-btn1">
-          <h3><i class="fa-regular fa-square-plus"></i>Save File</h3>
-        </button>
+        <a
+          id="downloadA"
+          download="Untitled.txt"
+          href="data:text/plain;charset=utf-8, "
+        >
+          <button class="btn h-btn1">
+            <h3><i class="fa-regular fa-square-plus"></i>Save File</h3>
+          </button>
+        </a>
       </div>
       <div class="shape-divider-top">
         <svg
@@ -51,6 +57,42 @@
         </svg>
       </div>
     </header>
+    <main class="main">
+      <div class="buttons-edit">
+        <div class="tools">
+          <button class="btn btn-tool align-tools active" data-name="justify">
+            <img src="../assets/align-justify.svg" />
+          </button>
+          <button class="btn btn-tool align-tools" data-name="left">
+            <img src="../assets/align-left.svg" />
+          </button>
+          <button class="btn btn-tool align-tools" data-name="center">
+            <img src="../assets/align-center.svg" />
+          </button>
+          <button class="btn btn-tool align-tools" data-name="right">
+            <img src="../assets/align-right.svg" />
+          </button>
+          <button class="btn btn-tool disabled" data-name="bold">
+            <img src="../assets/bold.svg" />
+          </button>
+          <button class="btn btn-tool disabled" data-name="h1">
+            <img src="../assets/h1.svg" />
+          </button>
+          <button class="btn btn-tool disabled" data-name="h2">
+            <img src="../assets/h2.svg" />
+          </button>
+          <button class="btn btn-tool disabled" data-name="list-ul">
+            <img src="../assets/list-ul.svg" />
+          </button>
+          <button class="btn btn-tool disabled" data-name="list-ol">
+            <img src="../assets/list-ol.svg" />
+          </button>
+        </div>
+        <button class="btn btn-convert"><h3>Convert</h3></button>
+      </div>
+      <section class="main-container hidden"></section>
+      <textarea id="txtarea" class="main-textarea"></textarea>
+    </main>
     <div class="shape-divider-bottom">
       <svg
         data-name="Layer 1"
@@ -74,6 +116,13 @@
         ></path>
       </svg>
     </div>
-    <script src="../script/script.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.2.4/marked.min.js"
+      integrity="sha512-nwWBb9WFoP7Q0hkeTjUPmHkkYLnmYgYnZ8PvQVVL2XJ9RLCGuLqKe86bhmZ3CJXGU8F777uuPkDQTkZ2qAuyvA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.2.2/marked.min.js"></script>
+    <script src="../script/app.js"></script>
   </body>
 </html>

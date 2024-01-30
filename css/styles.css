@@ -18,11 +18,17 @@ body {
   overflow-x: hidden;
 }
 h1 {
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+}
+h2 {
+  font-size: clamp(1.7rem, 3vw, 2rem);
 }
 h3 {
-  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  font-size: clamp(1rem, 3vw, 1.5rem);
   text-transform: uppercase;
+}
+.hidden {
+  display: none;
 }
 .btn {
   background-color: transparent;
@@ -40,7 +46,10 @@ h3 {
 
 .btn:hover {
   background-color: white;
-  color: black;
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+}
+.btn:active {
+  transform: scale(90%);
 }
 .header input[type="file"] {
   display: none;
@@ -57,9 +66,21 @@ h3 {
   position: relative;
 }
 .header .logo {
+  position: relative;
   display: flex;
   align-items: center;
+  min-width: 50%;
+  max-width: 70%;
+  overflow: hidden;
   gap: clamp(0.5rem, calc(0.8rem + 1vw), 4rem);
+}
+.header .logo::after {
+  content: "";
+  background-image: linear-gradient(to right, transparent 40%, var(--dark));
+  position: absolute;
+  width: 100vw;
+  left: 10%;
+  height: 100%;
 }
 .header .logo strong {
   color: var(--orange);
@@ -99,7 +120,76 @@ h3 {
   overflow: hidden;
   width: 100%;
 }
+.main .main-container,
+.main .main-textarea {
+  border-radius: var(--border-r);
+  overflow: hidden;
+  min-height: 70vh;
+  max-height: 70vh;
+  width: 100%;
+  text-align: justify;
+  background-color: white;
+  border: 2px solid var(--orange);
+  padding: 1rem;
+  font-size: 1.5rem;
+  overflow-y: scroll;
+}
 
+/* tools */
+.main .buttons-edit {
+  display: flex;
+  justify-content: space-between;
+}
+.main .buttons-edit .btn-convert {
+  background-color: var(--blue);
+  border-color: white;
+  color: white;
+}
+.main .buttons-edit .btn-convert h3 {
+  color: white;
+}
+.main .buttons-edit .btn-tool.active {
+  opacity: 1;
+  background-color: var(--blue);
+}
+.main .buttons-edit .btn-tool {
+  border-radius: 15px;
+  background-color: var(--blue);
+  border-color: var(--blue);
+  opacity: 0.5;
+  overflow: hidden;
+  padding: 0 0.5rem;
+}
+.tools {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+ul,
+ol {
+  list-style-position: inside;
+  padding: 0.5rem;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+blockquote {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--orange);
+  background-color: rgba(0, 0, 0, 0.041);
+  text-align: left;
+}
+.main .buttons-edit .btn-tool.disabled {
+  cursor: not-allowed;
+}
+.main .buttons-edit .btn-tool img {
+  width: 1.5rem;
+}
+.main .buttons-edit .btn-tool h3 {
+  color: white;
+}
 .main .recent-container .item:hover {
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.2);
