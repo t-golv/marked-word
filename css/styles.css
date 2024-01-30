@@ -15,6 +15,7 @@
 body {
   position: relative;
   background-color: #fffffc;
+  overflow-x: hidden;
 }
 h1 {
   font-size: clamp(1.5rem, 3vw, 2.5rem);
@@ -112,17 +113,16 @@ h3 {
   align-items: center;
   overflow: hidden;
 }
-.main .item .icon {
-  width: 3%;
-}
-.main .item .icon img {
+.main .item img {
   width: 2rem;
+  margin-right: clamp(0.5rem, 3vw, 5rem);
 }
 .main .item h3 {
   display: flex;
+  overflow: hidden;
   align-items: center;
-  gap: 5rem;
   color: white;
+  max-width: 60%;
 }
 /* footer */
 .footer {
