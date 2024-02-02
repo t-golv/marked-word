@@ -99,7 +99,7 @@ newfilebtn.addEventListener("click", (e) => {
 - List
 
 this is a link to [link name](link)
-![alt Alt picture text](../screenshot.png)      
+![alt Alt picture text](../Screenshot.png)      
 `,
     })
   );
