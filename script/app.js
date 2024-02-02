@@ -3,7 +3,9 @@ let mainContainer = document.querySelector(".main-container");
 let downloadEl = document.getElementById("downloadA");
 let tools = document.querySelectorAll(".btn-tool");
 let convert = document.querySelector(".btn-convert");
-let selectedValue = "";
+let selected = null;
+let selectValue = "";
+let isSelectedTxd = false;
 function clearSimilar(el) {
   if (el.classList.contains("align-tools")) {
     let alignTools = document.querySelectorAll(".align-tools");
@@ -39,8 +41,8 @@ function handleTool(action, el) {
         setTimeout(() => {
           el.classList.remove("active");
         }, 500);
-        let newSelected = `**${selectedValue}**`;
-        txtarea.value = txtarea.value.replace(selectedValue, newSelected);
+        let newSelected = `**${selected}**`;
+        txtarea.value = txtarea.value.replace(selected, newSelected);
       }
       break;
     case "h1":
@@ -50,19 +52,43 @@ function handleTool(action, el) {
         setTimeout(() => {
           el.classList.remove("active");
         }, 500);
-        let newSelected = `# ${selectedValue}`;
-        txtarea.value = txtarea.value.replace(selectedValue, newSelected);
+        let newSelected = `# ${selectValue}`;
+        txtarea.value = replaceString(
+          selected.target.value,
+          selected.target.selectionStart,
+          selected.target.selectionEnd,
+          newSelected
+        );
       }
       break;
     case "h2":
       if (isSelectedTxd) {
-        window.getSelection().empty();
         el.classList.add("active");
         setTimeout(() => {
           el.classList.remove("active");
         }, 500);
-        let newSelected = `## ${selectedValue}`;
-        txtarea.value = txtarea.value.replace(selectedValue, newSelected);
+        let newSelected = `## ${selectValue}`;
+        txtarea.value = replaceString(
+          selected.target.value,
+          selected.target.selectionStart,
+          selected.target.selectionEnd,
+          newSelected
+        );
+      }
+      break;
+    case "h3":
+      if (isSelectedTxd) {
+        el.classList.add("active");
+        setTimeout(() => {
+          el.classList.remove("active");
+        }, 500);
+        let newSelected = `### ${selectValue}`;
+        txtarea.value = replaceString(
+          selected.target.value,
+          selected.target.selectionStart,
+          selected.target.selectionEnd,
+          newSelected
+        );
       }
       break;
     case "list-ul":
@@ -72,8 +98,13 @@ function handleTool(action, el) {
         setTimeout(() => {
           el.classList.remove("active");
         }, 500);
-        let newSelected = `- ${selectedValue}`;
-        txtarea.value = txtarea.value.replace(selectedValue, newSelected);
+        let newSelected = `- ${selectValue}`;
+        txtarea.value = replaceString(
+          selected.target.value,
+          selected.target.selectionStart,
+          selected.target.selectionEnd,
+          newSelected
+        );
       }
       break;
     case "list-ol":
@@ -83,22 +114,53 @@ function handleTool(action, el) {
         setTimeout(() => {
           el.classList.remove("active");
         }, 500);
-        let newSelected = `1. ${selectedValue}`;
-        txtarea.value = txtarea.value.replace(selectedValue, newSelected);
+        let newSelected = `1. ${selectValue}`;
+        txtarea.value = replaceString(
+          selected.target.value,
+          selected.target.selectionStart,
+          selected.target.selectionEnd,
+          newSelected
+        );
+      }
+      break;
+    case "quote":
+      if (isSelectedTxd) {
+        window.getSelection().empty();
+        el.classList.add("active");
+        setTimeout(() => {
+          el.classList.remove("active");
+        }, 500);
+        let newSelected = `> ${selectValue}`;
+        txtarea.value = replaceString(
+          selected.target.value,
+          selected.target.selectionStart,
+          selected.target.selectionEnd,
+          newSelected
+        );
       }
       break;
   }
+  if (isSelectedTxd) {
+    disableBtn();
+  }
   return action;
 }
-let isSelectedTxd = false;
-document.addEventListener("selectionchange", (e) => {
+function replaceString(str, selectStart, selectEnd, replacementStr) {
+  return (
+    str.slice(0, selectStart) +
+    replacementStr +
+    str.slice(selectEnd, str.length)
+  );
+}
+function disableBtn() {
+  window.getSelection().removeAllRanges();
   isSelectedTxd = false;
   tools.forEach((tool) => {
     if (!tool.classList.contains("align-tools")) {
       tool.classList.add("disabled");
     }
   });
-});
+}
 downloadEl.addEventListener("click", () => {
   let fileToOpen = window.localStorage.getItem("open-file");
   fileToOpen = JSON.parse(fileToOpen);
@@ -108,9 +170,10 @@ downloadEl.addEventListener("click", () => {
 });
 txtarea.addEventListener("select", (e) => {
   isSelectedTxd = true;
-  selectedValue = e.target.value.substring(
-    e.target.selectionStart,
-    e.target.selectionEnd
+  selected = e;
+  selectValue = selected.target.value.substring(
+    selected.target.selectionStart,
+    selected.target.selectionEnd
   );
   tools.forEach((tool) => {
     if (!tool.classList.contains("align-tools")) {
@@ -119,7 +182,6 @@ txtarea.addEventListener("select", (e) => {
   });
 });
 convert.addEventListener("click", (e) => {
-  // console.log(marked(txtarea.value));
   mainContainer.innerHTML = marked.parse(txtarea.value, { breaks: true });
   mainContainer.classList.toggle("hidden");
   txtarea.classList.toggle("hidden");

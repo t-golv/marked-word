@@ -14,7 +14,9 @@
 }
 body {
   position: relative;
-  background-color: #fffffc;
+  background-color: var(--red);
+  min-height: 100vh;
+  color: white;
   overflow-x: hidden;
 }
 h1 {
@@ -114,9 +116,8 @@ a {
   justify-content: center;
   min-height: 50vh;
 }
-.main h3 {
+.main > h3 {
   text-align: left;
-  color: var(--dark);
 }
 .main .recent-container {
   border-radius: var(--border-r);
@@ -126,16 +127,19 @@ a {
 .main .main-container,
 .main .main-textarea {
   border-radius: var(--border-r);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  resize: none;
   min-height: 70vh;
   max-height: 70vh;
   width: 100%;
   text-align: justify;
   background-color: white;
-  border: 2px solid var(--orange);
+  /* border: 5px dashed var(--dark); */
+  outline: 4px solid white;
   padding: 1rem;
   font-size: 1.5rem;
-  overflow-y: scroll;
+  color: black;
 }
 
 /* tools */
@@ -153,7 +157,9 @@ a {
 }
 .main .buttons-edit .btn-tool.active {
   opacity: 1;
-  background-color: var(--blue);
+}
+.main .buttons-edit .btn-tool:not(.align-tools, .disabled) {
+  opacity: 0.8;
 }
 .main .buttons-edit .btn-tool {
   border-radius: 15px;
@@ -170,12 +176,35 @@ a {
   justify-content: center;
   width: 100%;
 }
-ul,
-ol {
+.main-container h1,
+.main-container h2,
+.main-container h3 {
+  border-bottom: 3px solid var(--dark);
+  padding: 0.5rem 0;
+  color: var(--dark);
+}
+.main-container strong {
+  color: var(--dark);
+}
+.main-container ul,
+.main-container ol {
   list-style-position: inside;
-  padding: 0.5rem;
-  text-align: left;
-  margin-bottom: 1rem;
+  margin: 0.5rem;
+}
+.main-container ul li,
+.main-container ol li {
+  margin: 0.2rem;
+  padding-left: 0.5rem;
+}
+.main-container a {
+  color: var(--orange);
+}
+.main-container img {
+  max-width: 100%;
+  border-radius: var(--border-r);
+
+  margin: 1rem 0;
+  box-shadow: 3px 5px 5px 0 rgba(0, 0, 0, 0.2);
 }
 blockquote {
   padding: 1rem;
@@ -241,33 +270,20 @@ blockquote {
   width: 100%;
   overflow: hidden;
   line-height: 0;
-  opacity: 0.3;
+  opacity: 0.5;
 }
-
-.shape-divider-top svg {
-  position: relative;
-  display: block;
-  min-width: 50rem;
-  width: calc(100% + 1.3px);
-  height: 20vh;
-}
-
-.shape-divider-top .shape-fill {
-  fill: var(--orange);
-}
-
 .shape-divider-bottom {
   position: absolute;
-  top: 80vh;
+  bottom: 0;
   transform: rotate(180deg);
   left: 0;
   z-index: -1;
   width: 100%;
   overflow: hidden;
   line-height: 0;
-  opacity: 0.3;
+  opacity: 0.5;
 }
-
+.shape-divider-top svg,
 .shape-divider-bottom svg {
   position: relative;
   display: block;
@@ -276,6 +292,7 @@ blockquote {
   height: 20vh;
 }
 
+.shape-divider-top .shape-fill,
 .shape-divider-bottom .shape-fill {
-  fill: var(--orange);
+  fill: var(--dark);
 }

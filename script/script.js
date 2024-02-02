@@ -86,7 +86,21 @@ newfilebtn.addEventListener("click", (e) => {
     "open-file",
     JSON.stringify({
       filename: "untitled.txt",
-      content: "Put your content here",
+      content: `
+# Heading 1
+## Heading 2
+### Heading 3
+> Quote, **bold text**
+
+1. Ordered 
+1. List
+
+- Unordered 
+- List
+
+this is a link to [link name](link)
+![alt Alt picture text](../screenshot.png)      
+`,
     })
   );
   window.location.href = "./pages/app.html";
